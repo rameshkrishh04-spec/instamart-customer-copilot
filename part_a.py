@@ -75,11 +75,9 @@ orders["order_amount"] = orders["order_amount"].fillna(
     (orders["price_inr"] * orders["quantity"] * (1 - orders["discount_pct"] / 100)).round(2)
 )
 completed = orders["status"].eq("completed")
-category_medians = orders.loc[completed].groupby("category")["delivery_minutes"].median()
 missing_completed_before = int(orders.loc[completed, "delivery_minutes"].isna().sum())
-orders.loc[completed, "delivery_minutes"] = orders.loc[completed].apply(
-    lambda r: category_medians.loc[r["category"]] if pd.isna(r["delivery_minutes"]) else r["delivery_minutes"], axis=1
-)
+completed_category_median = orders.loc[completed].groupby("category")["delivery_minutes"].transform("median")
+orders.loc[completed, "delivery_minutes"] = orders.loc[completed, "delivery_minutes"].fillna(completed_category_median)
 # Cancelled orders intentionally retain missing delivery time.
 orders = orders.drop(columns=["price_inr", "category"])
 orders["delivery_minutes"] = orders["delivery_minutes"].round().astype("Int64")

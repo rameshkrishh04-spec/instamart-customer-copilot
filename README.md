@@ -1,1 +1,1 @@
-Project files are being added in the next commit.
+Project files are being uploaded. See repository contents for the full implementation.

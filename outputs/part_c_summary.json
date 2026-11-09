@@ -1,0 +1,191 @@
+{
+  "zero_shot": {
+    "run": "zero_shot",
+    "rows": 164,
+    "status_counts": {
+      "classified_json": 135,
+      "classified_keyword": 12,
+      "flagged_invalid_output": 9,
+      "flagged_long": 4,
+      "skipped_empty": 4
+    },
+    "classified": 147,
+    "accuracy": 0.8571428571428571,
+    "tokens_total": 11584,
+    "tokens_per_classified": 78.80272108843538,
+    "retry_count": 19,
+    "redaction_counts": {
+      "emails": 55,
+      "phones": 91,
+      "order_ids": 132
+    },
+    "confusion_matrix": [
+      [
+        38,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        36,
+        0,
+        0
+      ],
+      [
+        10,
+        0,
+        29,
+        0
+      ],
+      [
+        11,
+        0,
+        0,
+        23
+      ]
+    ]
+  },
+  "few_shot": {
+    "run": "few_shot",
+    "rows": 164,
+    "status_counts": {
+      "classified_json": 135,
+      "classified_keyword": 12,
+      "flagged_invalid_output": 9,
+      "flagged_long": 4,
+      "skipped_empty": 4
+    },
+    "classified": 147,
+    "accuracy": 1.0,
+    "tokens_total": 18604,
+    "tokens_per_classified": 126.5578231292517,
+    "retry_count": 19,
+    "redaction_counts": {
+      "emails": 55,
+      "phones": 91,
+      "order_ids": 132
+    },
+    "confusion_matrix": [
+      [
+        38,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        36,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        39,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        34
+      ]
+    ]
+  },
+  "budget_demo": {
+    "run": "zero_shot_budget_6000",
+    "rows": 164,
+    "status_counts": {
+      "budget_exhausted": 75,
+      "classified_json": 71,
+      "classified_keyword": 6,
+      "skipped_empty": 4,
+      "flagged_long": 4,
+      "flagged_invalid_output": 4
+    },
+    "classified": 77,
+    "accuracy": 0.8311688311688312,
+    "tokens_total": 6029,
+    "tokens_per_classified": 78.2987012987013,
+    "retry_count": 10,
+    "redaction_counts": {
+      "emails": 55,
+      "phones": 91,
+      "order_ids": 132
+    },
+    "confusion_matrix": [
+      [
+        20,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        15,
+        0,
+        0
+      ],
+      [
+        5,
+        0,
+        17,
+        0
+      ],
+      [
+        8,
+        0,
+        0,
+        12
+      ]
+    ]
+  },
+  "final": {
+    "run": "few_shot_final",
+    "rows": 164,
+    "status_counts": {
+      "classified_json": 135,
+      "classified_keyword": 12,
+      "flagged_invalid_output": 9,
+      "flagged_long": 4,
+      "skipped_empty": 4
+    },
+    "classified": 147,
+    "accuracy": 1.0,
+    "tokens_total": 18604,
+    "tokens_per_classified": 126.5578231292517,
+    "retry_count": 19,
+    "redaction_counts": {
+      "emails": 55,
+      "phones": 91,
+      "order_ids": 132
+    },
+    "confusion_matrix": [
+      [
+        38,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        36,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        39,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        34
+      ]
+    ]
+  }
+}

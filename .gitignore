@@ -7,6 +7,6 @@ __pycache__/
 Thumbs.db
 
 # Generated datasets, databases, models and runtime outputs
-data/
-outputs/
-state/
+#data/
+#outputs/
+#state/

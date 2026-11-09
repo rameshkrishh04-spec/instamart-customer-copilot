@@ -1,0 +1,281 @@
+{
+  "rfm": {
+    "customers": 1175,
+    "recency_median": 19.0,
+    "recency_min": 0,
+    "recency_max": 180,
+    "frequency_mean": 9.45531914893617,
+    "frequency_max": 33,
+    "monetary_mean": 2552.0585531914894,
+    "monetary_max": 14766.55
+  },
+  "kmeans": [
+    {
+      "k": 2,
+      "inertia": 1820.7605530118512,
+      "silhouette": 0.4649718051476151
+    },
+    {
+      "k": 3,
+      "inertia": 1268.2345870687618,
+      "silhouette": 0.4451611905197954
+    },
+    {
+      "k": 4,
+      "inertia": 743.0711078443475,
+      "silhouette": 0.5255443348818724
+    },
+    {
+      "k": 5,
+      "inertia": 617.3666358545,
+      "silhouette": 0.48049500840771253
+    },
+    {
+      "k": 6,
+      "inertia": 503.17062225816534,
+      "silhouette": 0.4818721636138158
+    },
+    {
+      "k": 7,
+      "inertia": 408.46045441940913,
+      "silhouette": 0.4163373417690264
+    },
+    {
+      "k": 8,
+      "inertia": 366.50348655316816,
+      "silhouette": 0.4123290612695322
+    }
+  ],
+  "profiles": [
+    {
+      "segment_id": 0,
+      "customer_count": 436,
+      "mean_recency": 28.862385321100916,
+      "mean_frequency": 3.772935779816514,
+      "mean_monetary": 1057.618233944954,
+      "segment_name": "Occasional Customers",
+      "is_premium": false
+    },
+    {
+      "segment_id": 1,
+      "customer_count": 138,
+      "mean_recency": 24.115942028985508,
+      "mean_frequency": 6.768115942028985,
+      "mean_monetary": 7129.695652173913,
+      "segment_name": "Premium Customers",
+      "is_premium": true
+    },
+    {
+      "segment_id": 2,
+      "customer_count": 419,
+      "mean_recency": 8.766109785202865,
+      "mean_frequency": 19.403341288782816,
+      "mean_monetary": 3410.020525059666,
+      "segment_name": "Loyal Customers",
+      "is_premium": false
+    },
+    {
+      "segment_id": 3,
+      "customer_count": 182,
+      "mean_recency": 109.04395604395604,
+      "mean_frequency": 2.2032967032967035,
+      "mean_monetary": 685.9925824175824,
+      "segment_name": "At-Risk Customers",
+      "is_premium": false
+    }
+  ],
+  "pca_variance": [
+    0.6342787496047425,
+    0.2180376171454743
+  ],
+  "cohort": {
+    "customers": 1156,
+    "lapsed": 443,
+    "active": 713,
+    "lapse_rate": 0.38321799307958476,
+    "train": 924,
+    "test": 232
+  },
+  "baseline": {
+    "accuracy": 0.6163793103448276,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+  },
+  "logistic": {
+    "best_params": {
+      "model__C": 100
+    },
+    "cv_f1": 0.650552962900789,
+    "test": {
+      "model": "Logistic Regression",
+      "confusion_matrix": [
+        [
+          111,
+          32
+        ],
+        [
+          31,
+          58
+        ]
+      ],
+      "precision": 0.6444444444444445,
+      "recall": 0.651685393258427,
+      "f1": 0.6480446927374302,
+      "accuracy": 0.728448275862069
+    }
+  },
+  "random_forest": {
+    "best_params": {
+      "model__max_depth": 8,
+      "model__min_samples_leaf": 10
+    },
+    "cv_f1": 0.6856752725880242,
+    "test": {
+      "model": "Random Forest",
+      "confusion_matrix": [
+        [
+          111,
+          32
+        ],
+        [
+          32,
+          57
+        ]
+      ],
+      "precision": 0.6404494382022472,
+      "recall": 0.6404494382022472,
+      "f1": 0.6404494382022472,
+      "accuracy": 0.7241379310344828
+    }
+  },
+  "balanced_logistic": {
+    "precision": 0.5891472868217055,
+    "recall": 0.8539325842696629,
+    "f1": 0.6972477064220184
+  },
+  "rf_feature_importance": [
+    {
+      "feature": "numeric__monetary",
+      "importance": 0.2803819148820992
+    },
+    {
+      "feature": "numeric__frequency",
+      "importance": 0.27792011358456786
+    },
+    {
+      "feature": "numeric__recency",
+      "importance": 0.10907245388229893
+    },
+    {
+      "feature": "numeric__avg_delivery_minutes",
+      "importance": 0.05970199066301176
+    },
+    {
+      "feature": "numeric__cancellation_rate",
+      "importance": 0.05179563544197755
+    }
+  ],
+  "lr_coefficients": [
+    {
+      "feature": "numeric__recency",
+      "coefficient": 0.039379748461288624,
+      "sign": "positive"
+    },
+    {
+      "feature": "numeric__frequency",
+      "coefficient": -1.6976937905842082,
+      "sign": "negative"
+    },
+    {
+      "feature": "numeric__monetary",
+      "coefficient": 0.2836909749193872,
+      "sign": "positive"
+    },
+    {
+      "feature": "numeric__avg_discount_pct",
+      "coefficient": 0.00453385602092613,
+      "sign": "positive"
+    },
+    {
+      "feature": "numeric__cancellation_rate",
+      "coefficient": -0.1237073946374415,
+      "sign": "negative"
+    },
+    {
+      "feature": "numeric__avg_delivery_minutes",
+      "coefficient": 0.07888529492348334,
+      "sign": "positive"
+    },
+    {
+      "feature": "numeric__age",
+      "coefficient": 0.02334500886837189,
+      "sign": "positive"
+    },
+    {
+      "feature": "numeric__tenure_days",
+      "coefficient": -0.05015151979481054,
+      "sign": "negative"
+    },
+    {
+      "feature": "categorical__favorite_category_Electronics",
+      "coefficient": -1.1353046273354286,
+      "sign": "negative"
+    },
+    {
+      "feature": "categorical__favorite_category_Grocery",
+      "coefficient": -0.44942359309554425,
+      "sign": "negative"
+    },
+    {
+      "feature": "categorical__favorite_category_Personal Care",
+      "coefficient": -0.2849414357757578,
+      "sign": "negative"
+    },
+    {
+      "feature": "categorical__favorite_category_Snacks",
+      "coefficient": -0.2819565895565937,
+      "sign": "negative"
+    },
+    {
+      "feature": "categorical__city_Chennai",
+      "coefficient": -0.1689382617441194,
+      "sign": "negative"
+    },
+    {
+      "feature": "categorical__city_Delhi",
+      "coefficient": -0.3731180030543998,
+      "sign": "negative"
+    },
+    {
+      "feature": "categorical__city_Hyderabad",
+      "coefficient": -0.13290352835653124,
+      "sign": "negative"
+    },
+    {
+      "feature": "categorical__city_Mumbai",
+      "coefficient": -0.2295473238673202,
+      "sign": "negative"
+    },
+    {
+      "feature": "categorical__city_Pune",
+      "coefficient": -0.03157227678855437,
+      "sign": "negative"
+    },
+    {
+      "feature": "categorical__gender_male",
+      "coefficient": -0.20933355227363093,
+      "sign": "negative"
+    },
+    {
+      "feature": "categorical__gender_unknown",
+      "coefficient": -0.1586243354535347,
+      "sign": "negative"
+    }
+  ],
+  "scaler_frequency_mean_train": 8.114718614718615,
+  "frequency_mean_full_cohort": 8.028546712802768,
+  "selected_model": "Logistic Regression",
+  "retention_list_rows": 10,
+  "retention_true_lapsed": 3
+}

@@ -150,6 +150,8 @@ The pandas pivot table with margins reproduces the SQL Q2 grand total of **INR 2
 
 Completed order amount: mean INR 269.91, median INR 135.00, skewness 4.61; Q1 INR 64.80, Q3 INR 297.00, IQR INR 232.20; lower fence INR -283.50, upper fence INR 645.30; outliers below/above fences: 0/897. The distribution is strongly right-skewed: a relatively small number of large baskets raise the mean above the median. The largest absolute correlation is order_amount with discount_pct (-0.095); order_amount with quantity is 0.087. This correlation is small and does not establish causation.
 
+**Exploratory summary.** *What is this data about?* Synthetic quick-commerce orders: 11,110 completed orders from 1,175 customers in six cities, April to September 2025, across 40 products in five categories, with amounts in INR. *What do the distributions look like?* Order amount is strongly right-skewed: the mean (INR 269.91) is about double the median (INR 135.00), skewness is 4.61, and the quartiles are INR 64.80 and INR 297.00. *Are there outliers or anomalies?* The upper 1.5×IQR fence is INR 645.30 and 897 orders exceed it; none fall below the lower fence (INR -283.50). About 71% of these are Electronics orders, so they look like genuine high-value baskets rather than data errors. The raw anomalies (duplicates, pending rows, negative delivery times, unparseable amounts) were handled in cleaning. *What relationships exist?* All correlations among order_amount, discount_pct, quantity and delivery_minutes are weak. The largest in absolute value is order_amount with discount_pct (-0.095); order_amount with quantity is +0.087. Correlation of this size does not establish causation.
+
 ## Part B — Customer Segments and Lapse Prediction
 
 ### RFM and segmentation
@@ -185,6 +187,8 @@ Cutoff: **2025-09-01**. Cohort: every customer with at least one completed order
 
 Features use only pre-cutoff orders plus the clean customer table: recency, frequency, monetary, average discount, cancellation rate over final pre-cutoff orders, average delivery time, most frequent product category, city, age, gender and tenure. No order on or after 2025-09-01 enters the feature matrix, and whole-window segment labels are not model features. Missing feature values are asserted absent. OneHotEncoder (`drop='first'`) and StandardScaler are inside a scikit-learn Pipeline and fitted only on training rows (and within each CV fold); test rows are transformed only. The learned training-scaler mean for frequency is 8.115, compared with full-cohort frequency mean 8.029; they differ because the scaler is fitted on the training subset, not the entire cohort.
 
+**Leakage statement.** No encoder, scaler or resampler saw test rows: the OneHotEncoder and StandardScaler were fitted on training rows only (and inside each cross-validation fold), and the class-balance oversampling was applied to the training set only. No order dated on or after 2025-09-01 entered any feature, and the segment labels from the whole-window RFM clustering were not used as features.
+
 Baseline always predicting not-lapsed: accuracy 61.6%, lapsed-class F1 0.00. GridSearchCV used 5-fold CV and F1 scoring:
 
 | Model | Search grid | Best parameters | Best CV F1 |
@@ -206,6 +210,13 @@ Logistic Regression was selected because its test F1 is marginally higher in thi
 The positive class was oversampled **only in the training set**, retaining all original training rows and drawing lapsed rows with replacement until both classes had 570 rows. On the unchanged test set, balanced Logistic Regression achieved precision 0.589, recall 0.854, F1 0.697, compared with the unbalanced Logistic Regression above. Recall moved most (from 0.652 to 0.854); this finds more potential lapsers but creates more false-positive retention contacts, and precision did not improve.
 
 Five highest Random Forest feature importances:
+
+Business reading of the top features (importance shows how much a feature helps the forest separate lapsed from active customers, not the direction of the effect):
+- **monetary (0.280):** how much a customer has spent is the strongest signal, so spend history is a key input for deciding who to target.
+- **frequency (0.278):** how often a customer orders is nearly as important; frequent buyers are the habit-driven customers the retention team can most easily keep.
+- **recency (0.109):** how recently the customer last ordered matters, so a growing gap since the last order is an early warning sign.
+- **avg_delivery_minutes (0.060):** slower average deliveries carry some signal, suggesting that service quality can influence whether customers come back.
+- **cancellation_rate (0.052):** customers who cancel more often carry some signal, which points to friction in the ordering experience.
 
 | Feature | Importance |
 |---|---:|
